@@ -7,14 +7,13 @@ import { useRouter } from "next/navigation";
 const Logo = () => {
   const router = useRouter();
   return (
-    <div>Tour Vic Falls</div>
-    // <Image
-    //   alt="Logo"
-    //   className="hidden md:block cursor-pointer"
-    //   height="100"
-    //   width="100"
-    //   src="/images/logo.png"
-    // />
+    <Image
+      alt="Logo"
+      className="hidden md:block cursor-pointer"
+      height="100"
+      width="100"
+      src="/images/tour-vic-falls-logo.png"
+    />
   );
 };
 
