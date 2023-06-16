@@ -13,7 +13,7 @@ import {
   GiCaveEntrance,
   GiForestCamp,
   GiIsland,
-  GiWindmill,
+  GiForkKnifeSpoon,
 } from "react-icons/gi";
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
 import { MdOutlineVilla } from "react-icons/md";
@@ -27,8 +27,8 @@ export const categories = [
     description: "This property is close to the beach!",
   },
   {
-    label: "Windmill",
-    icon: GiWindmill,
+    label: "Restaurant",
+    icon: GiForkKnifeSpoon,
     description: "This property has Windmills!",
   },
   {
