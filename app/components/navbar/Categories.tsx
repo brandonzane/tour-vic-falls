@@ -4,7 +4,7 @@ import Container from "../Container";
 
 import { IoDiamond } from "react-icons/io5";
 import { BsSnow } from "react-icons/bs";
-import { FaSkiing } from "react-icons/fa";
+import { FaHiking } from "react-icons/fa";
 import {
   GiBarn,
   GiBoatFishing,
@@ -37,7 +37,7 @@ export const categories = [
     description: "This property is modern!",
   },
   {
-    label: "Countryside",
+    label: "Mountain View",
     icon: TbMountain,
     description: "This property is modern!",
   },
@@ -57,40 +57,40 @@ export const categories = [
     description: "This property has a lake!",
   },
   {
-    label: "Skiing",
-    icon: FaSkiing,
+    label: "Outdoor Activities",
+    icon: FaHiking,
     description: "This property has skiing!",
   },
-  {
-    label: "Castles",
-    icon: GiCastle,
-    description: "This property has castles!",
-  },
+  // {
+  //   label: "Castles",
+  //   icon: GiCastle,
+  //   description: "This property has castles!",
+  // },
   {
     label: "Camping",
     icon: GiForestCamp,
     description: "This property has camping activities!",
   },
+  // {
+  //   label: "Arctic",
+  //   icon: BsSnow,
+  //   description: "This property is in the arctic!",
+  // },
   {
-    label: "Arctic",
-    icon: BsSnow,
-    description: "This property is in the arctic!",
-  },
-  {
-    label: "Cave",
+    label: "Caves",
     icon: GiCaveEntrance,
     description: "This property has a cave!",
   },
-  {
-    label: "Desert",
-    icon: GiCactus,
-    description: "This property is in the desert!",
-  },
-  {
-    label: "Barns",
-    icon: GiBarn,
-    description: "This property is a barn!",
-  },
+  // {
+  //   label: "Desert",
+  //   icon: GiCactus,
+  //   description: "This property is in the desert!",
+  // },
+  // {
+  //   label: "Barns",
+  //   icon: GiBarn,
+  //   description: "This property is a barn!",
+  // },
   {
     label: "Lux",
     icon: IoDiamond,
