@@ -24,7 +24,7 @@ Features:
 *Favorites system
 \*Shareable URL filters
 
-### Buil Tech Stack
+### Tech Stack
 
 *Next JS
 *Tailwind
