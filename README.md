@@ -2,7 +2,7 @@
 
 Features:
 
-*Tailwind design
+Tailwind design
 *Tailwind animations and effects
 *Full responsiveness
 *Credential authentication
@@ -21,12 +21,12 @@ Features:
 *Pricing calculation
 *Advanced search algorithm by category, date range, map location, number of guests, rooms and bathrooms
 *For example we will filter out properties that have a reservation in your desired date range to travel
-*Favorites system
-\*Shareable URL filters
+\*Favorites system
+Shareable URL filters
 
 ### Tech Stack
 
-*Next JS
-*Tailwind
-*Cloudinary
-*Serverside Components
+**Next JS**
+**Tailwind**
+**Cloudinary**
+**Serverside Components**
