@@ -1,19 +1,18 @@
 "use client";
 
-import { Reservation } from "@prisma/client";
-
-import { SafeListing, SafeUser } from "@/app/types";
-import { categories } from "@/app/components/navbar/Categories";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import Container from "@/app/components/Container";
-import ListingHead from "@/app/components/listings/ListingHead";
-import ListingInfo from "@/app/components/listings/ListingInfo";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import { useRouter } from "next/navigation";
-import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import axios from "axios";
-import toast from "react-hot-toast";
-import ListingReservation from "@/app/components/listings/ListingReservation";
+import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
+import { useRouter } from "next/navigation";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { Range } from "react-date-range";
+import { toast } from "react-hot-toast";
+import Container from "../../components/Container";
+import { categories } from "../../components/navbar/Categories";
+import ListingHead from "../../components/listings/ListingHead";
+import ListingInfo from "../../components/listings/ListingInfo";
+import ListingReservation from "../../components/listings/ListingReservation";
+import useLoginModal from "../../hooks/useLoginModal";
+import { SafeListing, SafeReservation, SafeUser } from "../../types";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -22,18 +21,20 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-  reservations?: Reservation[];
-  listing: SafeListing & {
-    user: SafeUser;
-  };
+  listing: SafeListing & { user: SafeUser };
   currentUser?: SafeUser | null;
+  reservations?: SafeReservation[];
 }
 
-const ListingClient: React.FC<ListingClientProps> = ({
+const ListingClient: FC<ListingClientProps> = ({
   listing,
-  reservations = [],
   currentUser,
+  reservations = [],
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(listing.price);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+
   const loginModal = useLoginModal();
   const router = useRouter();
 
@@ -45,19 +46,24 @@ const ListingClient: React.FC<ListingClientProps> = ({
         start: new Date(reservation.startDate),
         end: new Date(reservation.endDate),
       });
+
       dates = [...dates, ...range];
     });
 
     return dates;
   }, [reservations]);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState(initialDateRange);
-
   const onCreateReservation = useCallback(() => {
     if (!currentUser) {
       return loginModal.onOpen();
+    }
+
+    if (!dateRange.startDate || !dateRange.endDate) {
+      return toast.error("Please select a date range");
+    }
+
+    if (listing?.userId === currentUser?.id) {
+      return toast.error("You cannot reserve your own listing");
     }
 
     setIsLoading(true);
@@ -70,18 +76,25 @@ const ListingClient: React.FC<ListingClientProps> = ({
         listingId: listing?.id,
       })
       .then(() => {
-        toast.success("Listing reserved!");
+        toast.success("Listing reserved successfully!");
         setDateRange(initialDateRange);
-        // Redirect to /trips
-        router.refresh;
+        router.push("/trips");
       })
       .catch(() => {
-        toast.error("Something went wrong.");
+        toast.error("Something went wrong");
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal]);
+  }, [
+    currentUser,
+    loginModal,
+    dateRange,
+    totalPrice,
+    listing?.id,
+    router,
+    listing?.userId,
+  ]);
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
@@ -113,15 +126,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
             id={listing.id}
             currentUser={currentUser}
           />
-          <div
-            className="
-          grid
-          gridcols-1
-          md:grid-cols-7
-          md:gap-10
-          mt-6
-          "
-          >
+
+          <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
             <ListingInfo
               user={listing.user}
               category={category}
@@ -131,12 +137,14 @@ const ListingClient: React.FC<ListingClientProps> = ({
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+
             <div className="order-first mb-10 md:order-last md:col-span-3">
               <ListingReservation
                 price={listing.price}
                 totalPrice={totalPrice}
-                onChangedate={(value) => setDateRange(value)}
-                dateRange={onCreateReservation}
+                onChangeDate={(value) => setDateRange(value)}
+                dateRange={dateRange}
+                onSubmit={onCreateReservation}
                 disabled={isLoading}
                 disabledDates={disabledDates}
               />
