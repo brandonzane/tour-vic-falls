@@ -1,32 +1,38 @@
-## Getting Started
+# Tour Victoria Falls
 
 Features:
 
-Tailwind design
-*Tailwind animations and effects
-*Full responsiveness
-*Credential authentication
-*Google authentication
-*Github authentication
-*Image upload using Cloudinary CDN
-*Client form validation and handling using react-hook-form
-*Server error handling using react-toast
-*Calendars with react-date-range
-*Page loading state
-*Page empty state
-*Booking / Reservation system
-*Guest reservation cancellation
-*Owner reservation cancellation
-*Creation and deletion of properties
-*Pricing calculation
-*Advanced search algorithm by category, date range, map location, number of guests, rooms and bathrooms
-*For example we will filter out properties that have a reservation in your desired date range to travel
-\*Favorites system
-Shareable URL filters
+<ul>
+  <li>Tailwind design</li>
+  <li>Tailwind animations and effects</li>
+  <li>Full responsiveness</li>
+  <li>Credential authentication</li>
+  <li>Google authentication</li>
+  <li>Github authentication</li>
+  <li>Image upload using Cloudinary CDN</li>
+  <li>Client form validation and handling using react-hook-form</li>
+  <li>Server error handling using react-toast</li>
+  <li>Calendars with react-date-range</li>
+  <li>Page loading state</li>
+  <li>Page empty state</li>
+  <li>Booking / Reservation system</li>
+  <li>Guest reservation cancellation</li>
+  <li>Owner reservation cancellation</li>
+  <li>Creation and deletion of properties</li>
+  <li>Pricing calculation</li>
+  <li>Advanced search algorithm by category, date range, map location, number of guests, rooms and bathrooms</li>
+  <li>For example we will filter out properties that have a reservation in your desired date range to travel</li>
+  <li>Favorites system</li>
+  <li>Shareable URL filters</li>
+</ul>
 
 ### Tech Stack
 
-**Next JS**
-**Tailwind**
-**Cloudinary**
-**Serverside Components**
+<ul>
+  <li>Next JS</li>
+  <li>Tailwind</li>
+  <li>Cloudinary</li>
+  <li>Serverside Components</li>
+  <li>Prisma</li>
+  <li>MongoDB</li>
+</ul>
