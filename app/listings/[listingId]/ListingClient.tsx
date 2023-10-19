@@ -4,7 +4,7 @@ import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Range } from "react-date-range";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { differenceInDays, eachDayOfInterval } from "date-fns";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -41,7 +41,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
-    reservations.forEach((reservation: SafeReservation) => {
+    reservations.forEach((reservation: any) => {
       const range = eachDayOfInterval({
         start: new Date(reservation.startDate),
         end: new Date(reservation.endDate),
@@ -54,7 +54,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [reservations]);
 
   const category = useMemo(() => {
-    return categories.find((item) => item.label === listing.category);
+    return categories.find((items) => items.label === listing.category);
   }, [listing.category]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -65,14 +65,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     if (!currentUser) {
       return loginModal.onOpen();
     }
-
-    if (!dateRange.startDate || !dateRange.endDate) {
-      return toast.error("Please select a date range");
-    }
-
-    if (listing?.userId === currentUser?.id) {
-      return toast.error("You cannot reserve your own listing");
-    }
+    setIsLoading(true);
 
     axios
       .post("/api/reservations", {
@@ -92,15 +85,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       .finally(() => {
         setIsLoading(false);
       });
-  }, [
-    totalPrice,
-    dateRange,
-    listing?.id,
-    router,
-    currentUser,
-    loginModal,
-    listing?.userId,
-  ]);
+  }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal]);
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
