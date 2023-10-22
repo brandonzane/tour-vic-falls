@@ -53,7 +53,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
     flex-col
     items-center
     gap-2
-    p-3
+    p-2
     border-b-2
     hover:text-neutral-800
     transition
@@ -62,7 +62,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
     ${selected ? "text-neutral-800" : "text-neutral-500"}
   `}
     >
-      <Icon size={26} />
+      <Icon size={20} />
       <div className="font-medium text-sm">{label}</div>
     </div>
   );
