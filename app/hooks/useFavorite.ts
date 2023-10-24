@@ -1,5 +1,6 @@
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import { MouseEvent, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { toast } from "react-hot-toast";
 
 import { SafeUser } from "@/app/types";
@@ -23,7 +24,7 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
   }, [currentUser, listingId]);
 
   const toggleFavorite = useCallback(
-    async (e: MouseEvent<HTMLDivElement>) => {
+    async (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
 
       if (!currentUser) {
@@ -31,26 +32,22 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
       }
 
       try {
-        let req;
+        let request;
+
         if (hasFavorited) {
-          req = () =>
-            fetch(`/api/favorites/${listingId}`, {
-              method: "DELETE",
-            });
+          request = () => axios.delete(`/api/favorites/${listingId}`);
         } else {
-          req = () =>
-            fetch(`/api/favorites/${listingId}`, {
-              method: "POST",
-            });
+          request = () => axios.post(`/api/favorites/${listingId}`);
         }
-        await req();
+
+        await request();
         router.refresh();
         toast.success("Success");
-      } catch (err) {
-        toast.error("Something went wrong");
+      } catch (error) {
+        toast.error("Something went wrong.");
       }
     },
-    [currentUser, hasFavorited, loginModal, router, listingId]
+    [currentUser, hasFavorited, listingId, loginModal, router]
   );
 
   return {
