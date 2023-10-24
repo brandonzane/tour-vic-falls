@@ -1,5 +1,3 @@
-"use client";
-
 import dynamic from "next/dynamic";
 import { IconType } from "react-icons";
 
@@ -42,6 +40,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
   const coordinates = getByValue(locationValue)?.latlng;
 
+  const MapComponent = dynamic(() => import("../Map"));
+
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
@@ -82,14 +82,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         />
       )}
       <hr />
-      <div
-        className="
-      text-lg font-light text-neutral-500"
-      >
-        {description}
-      </div>
+      <div className="text-lg font-light text-neutral-500">{description}</div>
       <hr />
-      <Map center={coordinates} />
+      <MapComponent center={coordinates} />
     </div>
   );
 };

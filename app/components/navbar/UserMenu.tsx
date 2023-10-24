@@ -46,17 +46,20 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           className="
             hidden
             md:block
-            text-sm 
+            text-sm
+            text-white
             font-semibold 
             py-3 
             px-4 
-            rounded-full 
-            hover:bg-neutral-100 
+            rounded-md
+            bg-green-600
+            hover:bg-neutral-300
+            hover:text-black
             transition 
             cursor-pointer
           "
         >
-          Tour Victoria Falls
+          Create Listing
         </div>
         <div
           onClick={toggleOpen}
@@ -70,7 +73,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           flex-row 
           items-center 
           gap-3 
-          rounded-full 
+          rounded-md
           cursor-pointer 
           hover:shadow-md 
           transition
