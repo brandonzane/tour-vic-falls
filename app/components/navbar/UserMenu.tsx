@@ -56,7 +56,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             cursor-pointer
           "
         >
-          Tour Vic Falls
+          Tour Victoria Falls
         </div>
         <div
           onClick={toggleOpen}
