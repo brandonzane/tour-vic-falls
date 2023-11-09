@@ -1,6 +1,6 @@
 "use client";
 
-import { Listing, Reservation } from "@prisma/client";
+import { Reservation } from "@prisma/client";
 
 import { SafeListing, SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import HeartButton from "../HeartButton";
 import Button from "../Button";
 
 interface ListingCardProps {
+  title: string;
   data: SafeListing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
@@ -22,6 +23,7 @@ interface ListingCardProps {
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
+  title,
   data,
   reservation,
   onAction,
@@ -95,11 +97,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="font-semibold text-lg">
-          {location?.region}, {location?.label}
-        </div>
+        <div className="font-semibold text-lg">{title}</div>
         <div className="font-light text-neutral-500">
-          {reservationDate || data.category}
+          {/*{reservationDate || data.category can also be added here. It will add the listing category*/}
+          {location?.region}, {location?.label}
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">$ {price}</div>
