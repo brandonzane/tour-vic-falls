@@ -11,7 +11,7 @@ interface EmptyState {
 }
 
 const EmptyState: React.FC<EmptyState> = ({
-  title = "No Exact Mathes",
+  title = "No Exact Matches",
   subtitle = "Try changing your filters",
   showReset,
 }) => {
