@@ -13,7 +13,7 @@ const Loader = () => {
       items-center 
     "
     >
-      <BounceLoader size={100} color="blue" />
+      <BounceLoader size={100} color="#19cf89" />
     </div>
   );
 };
