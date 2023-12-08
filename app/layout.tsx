@@ -12,8 +12,8 @@ import SearchModal from "./components/modals/SearchModal";
 const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Tour Vic Falls",
-  description: "Tour Vic Falls",
+  title: "Tour Victoria Falls",
+  description: "Tour Victoria Falls",
 };
 
 export default async function RootLayout({
