@@ -8,6 +8,7 @@ import RentModal from "./components/modals/RentModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 import SearchModal from "./components/modals/SearchModal";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <ClientOnly>
+          <SpeedInsights />
           <ToasterProvider />
           <SearchModal />
           <RentModal />
